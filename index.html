@@ -1,5 +1,123 @@
 <!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Santino Aromas</title><style>
-:root{--bg:#080808;--p:#121110;--g:#d7a943;--g2:#f1cd75;--t:#f5f1e8;--m:#aaa39a;--l:#654b20}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:auto;padding:0 16px}header{background:radial-gradient(circle at 50% -80%,#30230d,#090909 60%);border-bottom:1px solid var(--l);padding:12px 0}.head{display:grid;grid-template-columns:1fr 300px 1fr;align-items:center;gap:15px}.logo{width:100%;max-width:300px;margin:auto}.contact,.social{font-size:14px}.contact strong,.social strong{display:block;color:var(--g2);margin-bottom:7px}.social{text-align:right}nav{position:sticky;top:0;z-index:10;background:#0b0b0b;border-bottom:1px solid #463519}.nav{display:flex;gap:4px;align-items:center;overflow:auto}.nav a,.nav button{padding:15px 16px;white-space:nowrap;background:none;border:0;color:#ddd;cursor:pointer}.adminlink{margin-left:auto;color:var(--g2)!important}.search{padding:14px 0}.search input{width:100%;padding:15px 18px;border-radius:17px;border:1px solid #765922;background:#0e0e0e;color:#fff;font-size:16px}.hero{min-height:330px;border:1px solid #765922;border-radius:20px;overflow:hidden;background:radial-gradient(circle at 75% 50%,#3b2a10,#090909 52%);display:flex;align-items:center}.heroText{width:55%;padding:38px}.heroText small{letter-spacing:3px}.hero h1{font:47px Georgia,serif;line-height:1;color:var(--g2);margin:9px 0}.hero p{font:italic 24px Georgia,serif}.btn{border:1px solid var(--g);background:#10100f;color:var(--g2);border-radius:22px;padding:11px 20px;font-weight:bold;cursor:pointer}.heroArt{height:330px;flex:1;position:relative}.b{position:absolute;bottom:28px;width:65px;border:2px solid #b98c35;border-radius:12px;background:linear-gradient(90deg,#090909,#4d3614,#0b0b0b);box-shadow:0 10px 50px #000}.b:before{content:"";position:absolute;top:-28px;left:13px;width:35px;height:27px;border:2px solid #b98c35;background:#15120d;border-radius:5px}.b1{left:15%;height:165px}.b2{left:31%;height:215px}.b3{left:48%;height:185px}.b4{left:65%;height:230px}.title{display:flex;justify-content:space-between;align-items:center;margin:25px 0 13px}.title h2{font:28px Georgia,serif;color:var(--g2);margin:0}.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.cat{border:1px solid #654b20;border-radius:15px;background:#11100f;padding:23px 8px;text-align:center;cursor:pointer}.cat i{display:block;color:var(--g2);font-size:31px;font-style:normal;margin-bottom:8px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:#11100f;border:1px solid #5d4520;border-radius:16px;overflow:hidden}.pic{height:245px;background:radial-gradient(circle,#3e2b11,#12110f 52%,#0a0a0a);display:flex;align-items:center;justify-content:center;overflow:hidden}.pic img{width:100%;height:100%;object-fit:contain}.placeholder{text-align:center;color:#8c826f;padding:20px}.body{padding:14px}.brand{font-size:12px;color:#c9a04b}.name{font-size:19px;font-weight:800;margin:4px 0}.ml{color:#aaa;font-size:13px}.price{font-size:19px;color:var(--g2);font-weight:800;margin:8px 0}.detail{width:100%}.contactbox{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:27px 0}.contactcard{border:1px solid #5d4520;border-radius:16px;padding:20px;background:#10100f}.contactcard h3{margin:0 0 8px;color:var(--g2)}footer{text-align:center;border-top:1px solid #4e3b1c;margin-top:30px;padding:25px;color:#999;font-size:13px}.modal{display:none;position:fixed;inset:0;background:#000c;z-index:50;padding:16px;overflow:auto}.modalbox{max-width:900px;margin:25px auto;background:#111;border:1px solid #765922;border-radius:20px;padding:22px}.close{float:right;background:#222;color:#fff;border:1px solid #765922;border-radius:8px;padding:7px;cursor:pointer}.modal h2{font:28px Georgia,serif;color:var(--g2)}.row{display:flex;justify-content:space-between;gap:15px;padding:10px 0;border-bottom:1px solid #302719}.send{background:#168047;color:#fff;border-color:#53c786;width:100%;margin-top:15px}.form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.form input,.form textarea{width:100%;padding:11px;border-radius:9px;border:1px solid #57431f;background:#0b0b0b;color:white}.form textarea{min-height:80px;grid-column:1/-1}.full{grid-column:1/-1}.hint{color:#aaa;font-size:12px;line-height:1.5}.adminProducts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}.adminItem{border:1px solid #4f3d20;border-radius:12px;padding:10px;background:#0c0c0c;display:flex;gap:10px;align-items:center}.adminItem img{width:60px;height:60px;object-fit:contain;background:#191713;border-radius:8px}.adminItem button{margin-left:auto}@media(max-width:800px){.head{grid-template-columns:1fr}.logo{max-width:245px}.contact,.social{text-align:center}.hero{display:block}.heroText{width:100%;padding:28px}.hero h1{font-size:37px}.heroArt{height:180px}.cats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.pic{height:180px}.contactbox{grid-template-columns:1fr}.form,.adminProducts{grid-template-columns:1fr}}
+:root{--bg:#080808;--p:#121110;--g:#d7a943;--g2:#f1cd75;--t:#f5f1e8;--m:#aaa39a;--l:#654b20}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--t);font-family:Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{max-width:1180px;margin:auto;padding:0 16px}header{background:radial-gradient(circle at 50% -80%,#30230d,#090909 60%);border-bottom:1px solid var(--l);padding:12px 0}.head{display:grid;grid-template-columns:1fr 300px 1fr;align-items:center;gap:15px}.logo{width:100%;max-width:300px;margin:auto}.contact,.social{font-size:14px}.contact strong,.social strong{display:block;color:var(--g2);margin-bottom:7px}.social{text-align:right}nav{position:sticky;top:0;z-index:10;background:#0b0b0b;border-bottom:1px solid #463519}.nav{display:flex;gap:4px;align-items:center;overflow:auto}.nav a,.nav button{padding:15px 16px;white-space:nowrap;background:none;border:0;color:#ddd;cursor:pointer}.adminlink{margin-left:auto;color:var(--g2)!important}.search{padding:14px 0}.search input{width:100%;padding:15px 18px;border-radius:17px;border:1px solid #765922;background:#0e0e0e;color:#fff;font-size:16px}.hero{min-height:330px;border:1px solid #765922;border-radius:20px;overflow:hidden;background:radial-gradient(circle at 75% 50%,#3b2a10,#090909 52%);display:flex;align-items:center}.heroText{width:55%;padding:38px}.heroText small{letter-spacing:3px}.hero h1{font:47px Georgia,serif;line-height:1;color:var(--g2);margin:9px 0}.hero p{font:italic 24px Georgia,serif}.btn{border:1px solid var(--g);background:#10100f;color:var(--g2);border-radius:22px;padding:11px 20px;font-weight:bold;cursor:pointer}.heroArt{height:330px;flex:1;position:relative}.b{position:absolute;bottom:28px;width:65px;border:2px solid #b98c35;border-radius:12px;background:linear-gradient(90deg,#090909,#4d3614,#0b0b0b);box-shadow:0 10px 50px #000}.b:before{content:"";position:absolute;top:-28px;left:13px;width:35px;height:27px;border:2px solid #b98c35;background:#15120d;border-radius:5px}.b1{left:15%;height:165px}.b2{left:31%;height:215px}.b3{left:48%;height:185px}.b4{left:65%;height:230px}.title{display:flex;justify-content:space-between;align-items:center;margin:25px 0 13px}.title h2{font:28px Georgia,serif;color:var(--g2);margin:0}.cats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.cat{border:1px solid #654b20;border-radius:15px;background:#11100f;padding:23px 8px;text-align:center;cursor:pointer}.cat i{display:block;color:var(--g2);font-size:31px;font-style:normal;margin-bottom:8px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:#11100f;border:1px solid #5d4520;border-radius:16px;overflow:hidden}.pic{height:245px;background:#151515;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:10px;border:1px solid rgba(212,175,90,.35);border-radius:12px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.025),0 4px 14px rgba(0,0,0,.25)}.pic img{width:100%;height:100%;object-fit:cover;display:block;border-radius:8px}.placeholder{text-align:center;color:#8c826f;padding:20px}.body{padding:14px}.brand{font-size:12px;color:#c9a04b}.name{font-size:19px;font-weight:800;margin:4px 0}.ml{color:#aaa;font-size:13px}.price{font-size:19px;color:var(--g2);font-weight:800;margin:8px 0}.detail{width:100%}.contactbox{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:27px 0}.contactcard{border:1px solid #5d4520;border-radius:16px;padding:20px;background:#10100f}.contactcard h3{margin:0 0 8px;color:var(--g2)}footer{text-align:center;border-top:1px solid #4e3b1c;margin-top:30px;padding:25px;color:#999;font-size:13px}.modal{display:none;position:fixed;inset:0;background:#000c;z-index:50;padding:16px;overflow:auto}.modalbox{max-width:900px;margin:25px auto;background:#111;border:1px solid #765922;border-radius:20px;padding:22px}.close{float:right;background:#222;color:#fff;border:1px solid #765922;border-radius:8px;padding:7px;cursor:pointer}.modal h2{font:28px Georgia,serif;color:var(--g2)}.row{display:flex;justify-content:space-between;gap:15px;padding:10px 0;border-bottom:1px solid #302719}.send{background:#168047;color:#fff;border-color:#53c786;width:100%;margin-top:15px}.form{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.form input,.form textarea{width:100%;padding:11px;border-radius:9px;border:1px solid #57431f;background:#0b0b0b;color:white}.form textarea{min-height:80px;grid-column:1/-1}.full{grid-column:1/-1}.hint{color:#aaa;font-size:12px;line-height:1.5}.adminProducts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}.adminItem{border:1px solid #4f3d20;border-radius:12px;padding:10px;background:#0c0c0c;display:flex;gap:10px;align-items:center}.adminItem img{width:60px;height:60px;object-fit:contain;background:#191713;border-radius:8px}.adminItem button{margin-left:auto}@media(max-width:800px){.head{grid-template-columns:1fr}.logo{max-width:245px}.contact,.social{text-align:center}.hero{display:block}.heroText{width:100%;padding:28px}.hero h1{font-size:37px}.heroArt{height:180px}.cats{grid-template-columns:repeat(2,1fr)}.grid{grid-template-columns:repeat(2,1fr)}.pic{height:180px}.contactbox{grid-template-columns:1fr}.form,.adminProducts{grid-template-columns:1fr}}
+
+<style>
+#sortProducts,
+#brandFilter{
+  appearance:none;
+  -webkit-appearance:none;
+  background:linear-gradient(145deg,#242424,#151515) !important;
+  color:#f3dfad !important;
+  border:1px solid rgba(212,175,90,.55) !important;
+  border-radius:12px !important;
+  padding:9px 34px 9px 13px !important;
+  font-size:14px !important;
+  font-weight:600 !important;
+  box-shadow:0 5px 18px rgba(0,0,0,.35) !important;
+  outline:none !important;
+  cursor:pointer;
+  transition:.2s ease;
+  background-image:
+    linear-gradient(45deg,transparent 50%,#d4af5a 50%),
+    linear-gradient(135deg,#d4af5a 50%,transparent 50%),
+    linear-gradient(145deg,#242424,#151515) !important;
+  background-position:
+    calc(100% - 19px) 55%,
+    calc(100% - 13px) 55%,
+    0 0 !important;
+  background-size:
+    6px 6px,
+    6px 6px,
+    100% 100% !important;
+  background-repeat:no-repeat !important;
+}
+
+#sortProducts:hover,
+#brandFilter:hover{
+  border-color:#d4af5a !important;
+  box-shadow:0 7px 22px rgba(0,0,0,.45) !important;
+  transform:translateY(-1px);
+}
+
+#sortProducts:focus,
+#brandFilter:focus{
+  border-color:#e6c66a !important;
+  box-shadow:0 0 0 2px rgba(212,175,90,.18),0 7px 22px rgba(0,0,0,.4) !important;
+}
+
+#sortProducts option,
+#brandFilter option{
+  background:#181818;
+  color:#f3dfad;
+}
+
+@media(max-width:600px){
+  #sortProducts,
+  #brandFilter{
+    min-width:0 !important;
+    width:50% !important;
+  }
+}
+
+<style>
+#sortProducts,
+#brandFilter{
+  appearance:none;
+  -webkit-appearance:none;
+  background:linear-gradient(145deg,#242424,#151515) !important;
+  color:#f3dfad !important;
+  border:1px solid rgba(212,175,90,.55) !important;
+  border-radius:12px !important;
+  padding:9px 34px 9px 13px !important;
+  font-size:14px !important;
+  font-weight:600 !important;
+  box-shadow:0 5px 18px rgba(0,0,0,.35) !important;
+  outline:none !important;
+  cursor:pointer;
+  transition:.2s ease;
+  background-image:
+    linear-gradient(45deg,transparent 50%,#d4af5a 50%),
+    linear-gradient(135deg,#d4af5a 50%,transparent 50%),
+    linear-gradient(145deg,#242424,#151515) !important;
+  background-position:
+    calc(100% - 19px) 55%,
+    calc(100% - 13px) 55%,
+    0 0 !important;
+  background-size:
+    6px 6px,
+    6px 6px,
+    100% 100% !important;
+  background-repeat:no-repeat !important;
+}
+
+#sortProducts:hover,
+#brandFilter:hover{
+  border-color:#d4af5a !important;
+  box-shadow:0 7px 22px rgba(0,0,0,.45) !important;
+  transform:translateY(-1px);
+}
+
+#sortProducts:focus,
+#brandFilter:focus{
+  border-color:#e6c66a !important;
+  box-shadow:0 0 0 2px rgba(212,175,90,.18),0 7px 22px rgba(0,0,0,.4) !important;
+}
+
+#sortProducts option,
+#brandFilter option{
+  background:#181818;
+  color:#f3dfad;
+}
+
+@media(max-width:600px){
+  #sortProducts,
+  #brandFilter{
+    min-width:0 !important;
+    width:50% !important;
+  }
+}
+</style>
+</style>
 </style>
 <style>
 .social-icons{
@@ -71,6 +189,34 @@ justify-content:center;
   transform:translateX(-50%) translateY(0);
 }
 </style>
+
+<style>
+#sortProducts,
+#brandFilter{
+  background-color:#1b1b1b !important;
+  background:#1b1b1b !important;
+  color:#e8d7aa !important;
+  border:1px solid #8f7438 !important;
+  border-radius:10px !important;
+  padding:8px 32px 8px 12px !important;
+  font-size:13px !important;
+  font-weight:600 !important;
+  color-scheme:dark;
+}
+
+#sortProducts option,
+#brandFilter option{
+  background-color:#1b1b1b !important;
+  color:#e8d7aa !important;
+}
+
+#sortProducts:focus,
+#brandFilter:focus{
+  background-color:#1b1b1b !important;
+  color:#f1dfad !important;
+  outline:none !important;
+}
+</style>
 </head><body>
 <header><div class="wrap head"><div class="contact"></div><img src="logo.png" class="logo"><div class="social social-icons">
 <a href="https://wa.me/5493415198195" target="_blank" aria-label="WhatsApp" class="social-icon whatsapp-icon">
@@ -88,12 +234,45 @@ justify-content:center;
 <nav><div class="wrap nav"><a href="#inicio">⌂ Inicio</a><a href="#catalogo">♧ Catálogo</a><a href="#categorias">▦ Categorías</a><a href="#contacto">☏ Contacto</a></div></nav>
 <main class="wrap" id="inicio"><div class="search"><input id="search" placeholder="🔎 Buscar perfumes, marcas, notas olfativas..."></div>
 
-<section id="catalogo"><div class="title"><h2>CATÁLOGO</h2></div><div id="grid" class="grid"></div></section><section id="contacto" class="contactbox"><div class="contactcard"><h3>💬 HACÉ TU PEDIDO</h3><p>341 519 8195</p><p>341 722 0246</p></div><div class="contactcard"><h3>◎ INSTAGRAM</h3><p>@santino.aromas</p></div><div class="contactcard"><h3>🎧 ATENCIÓN PERSONALIZADA</h3><p>Te asesoramos para encontrar tu fragancia.</p></div></section></main><footer>SANTINO AROMAS · PERFUMES ÁRABES<br>© 2026 Todos los derechos reservados</footer>
+<section id="catalogo">
+<div class="title"><h2>CATÁLOGO</h2></div>
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin:0 0 20px 0;">
+  <select id="sortProducts" style="flex:1;min-width:0;width:50%;padding:8px 10px;border-radius:10px;border:1px solid #8f7438;font-size:13px;">
+    <option value="default">↕ ORDENAR</option>
+    <option value="all">Todos</option>
+    <option value="priceAsc">↑ Menor a mayor</option>
+    <option value="priceDesc">↓ Mayor a menor</option>
+    <option value="newest">↑ Más nuevos</option>
+    <option value="oldest">↓ Más viejos</option>
+  </select>
+
+  <select id="brandFilter" style="flex:1;min-width:0;width:50%;padding:8px 10px;border-radius:10px;border:1px solid #8f7438;font-size:13px;">
+    <option value="">🏷️ Todas las marcas</option>
+  </select>
+</div>
+
+<div id="grid" class="grid"></div>
+</section><section id="contacto" class="contactbox"><div class="contactcard"><h3>💬 HACÉ TU PEDIDO</h3><p>341 519 8195</p><p>341 722 0246</p></div><div class="contactcard"><h3>◎ INSTAGRAM</h3><p>@santino.aromas</p></div><div class="contactcard"><h3>🎧 ATENCIÓN PERSONALIZADA</h3><p>Te asesoramos para encontrar tu fragancia.</p></div></section></main><footer>SANTINO AROMAS · PERFUMES ÁRABES<br>© 2026 Todos los derechos reservados</footer>
 <div id="modal" class="modal"><div class="modalbox"><button class="close" onclick="hide('modal')">✕</button><div id="detail"></div></div></div><div id="cartModal" class="modal"><div class="modalbox"><button class="close" onclick="hide('cartModal')">✕</button><h2>Mi pedido</h2><div id="cartList"></div><button class="btn send" onclick="sendOrder()">💬 Enviar pedido por WhatsApp</button></div></div>
 <div id="adminProducts" class="adminProducts"></div></div></div>
 <script>
 const defaults=[{id:1,name:'Asad',brand:'Lattafa',ml:'100 ml',price:49900,family:'Amaderada / especiada',notes:'Especias · maderas · ámbar · vainilla',gender:'Masculino / unisex',duration:'Alta',desc:'Fragancia intensa y especiada, de carácter elegante y envolvente.',image:''},{id:2,name:'Khamrah',brand:'Lattafa',ml:'100 ml',price:52900,family:'Ámbar / gourmand',notes:'Canela · dátiles · praliné · vainilla · ámbar',gender:'Unisex',duration:'Alta',desc:'Dulce, cálido y gourmand.',image:''},{id:3,name:'Yara',brand:'Lattafa',ml:'100 ml',price:45900,family:'Floral / gourmand',notes:'Frutas · flores · vainilla · almizcle',gender:'Femenino',duration:'Media-alta',desc:'Dulce, cremoso y femenino.',image:''},{id:4,name:'Afeef',brand:'Lattafa',ml:'100 ml',price:48900,family:'Floral / frutal',notes:'Frutas · flores · vainilla · maderas',gender:'Unisex',duration:'Alta',desc:'Una fragancia sofisticada y envolvente.',image:''}];
-let products=JSON.parse(localStorage.getItem('santinoProducts')||'null')||defaults,cart=[],brand='',editing=null;const grid=document.getElementById('grid'),search=document.getElementById('search');const money=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(n);function persist(){localStorage.setItem('santinoProducts',JSON.stringify(products))}function render(){let q=search.value.toLowerCase();let a=products.filter(p=>(p.name+' '+p.brand+' '+(p.notes||'')).toLowerCase().includes(q)&&(!brand||p.brand===brand));grid.innerHTML=a.map(p=>`<article class="card"><div class="pic">${p.image?`<img src="${p.image}" loading="lazy">`:'<div class="placeholder">🧴<br>Sin foto</div>'}</div><div class="body"><div class="brand">${p.brand}</div><div class="name">${p.name}</div><div class="ml">${p.ml}</div><div class="price">${money(p.price)}</div><button class="btn detail" onclick="show('${p.id}')">VER DETALLES →</button></div></article>`).join('')||'<p>No encontramos productos.</p>'}function setBrand(b){brand=b;render();document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})}function clearFilter(){brand='';search.value='';render()}async function show(id){
+let products=JSON.parse(localStorage.getItem('santinoProducts')||'null')||defaults,cart=[],brand='',editing=null;
+let sortMode='default';const grid=document.getElementById('grid'),search=document.getElementById('search');const money=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(n);function persist(){localStorage.setItem('santinoProducts',JSON.stringify(products))}function render(){
+  let q=search.value.toLowerCase();
+
+  let a=products.filter(p=>
+    (p.name+' '+p.brand+' '+(p.notes||'')+' '+(p.desc||'')).toLowerCase().includes(q) &&
+    (!brand||p.brand===brand)
+  );
+
+  if(sortMode==='priceAsc') a.sort((x,y)=>Number(x.price)-Number(y.price));
+  if(sortMode==='priceDesc') a.sort((x,y)=>Number(y.price)-Number(x.price));
+  if(sortMode==='newest') a.sort((x,y)=>new Date(y.created_at||0)-new Date(x.created_at||0));
+  if(sortMode==='oldest') a.sort((x,y)=>new Date(x.created_at||0)-new Date(y.created_at||0));
+
+  grid.innerHTML=a.map(p=>`<article class="card"><div class="pic">${p.image?`<img src="${p.image}" loading="lazy">`:'<div class="placeholder">🧴<br>Sin foto</div>'}</div><div class="body"><div class="brand">${p.brand}</div><div class="name">${p.name}</div><div class="ml">${p.ml}</div><div class="price">${money(p.price)}</div><button class="btn detail" onclick="show('${p.id}')">VER DETALLES →</button></div></article>`).join('')||'<p>No encontramos productos.</p>'}function setBrand(b){brand=b;render();document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})}function clearFilter(){brand='';search.value='';render()}async function show(id){
   let p=products.find(x=>String(x.id)===String(id));
   if(!p){
     console.error("Producto no encontrado:",id);
@@ -206,18 +385,66 @@ let products=JSON.parse(localStorage.getItem('santinoProducts')||'null')||defaul
 
   document.getElementById('modal').style.display='block';
 }function add(id){
+  let p=products.find(x=>String(x.id)===String(id));
+
+  if(!p || Number(p.stock)<=0){
+    let toast=document.getElementById('cartToast');
+    toast.textContent='❌ Producto agotado';
+    toast.classList.add('show');
+    clearTimeout(window.cartToastTimer);
+    window.cartToastTimer=setTimeout(()=>{
+      toast.classList.remove('show');
+    },2500);
+    return;
+  }
+
   cart.push(String(id));
   document.getElementById('count').textContent=cart.length;
-  let p=products.find(x=>String(x.id)===String(id));
+
   let toast=document.getElementById('cartToast');
-  toast.textContent='🛒 ¡Agregado al pedido! '+(p?p.name:'Producto');
+  toast.textContent='🛒 ¡Agregado al pedido! '+p.name;
   toast.classList.add('show');
   clearTimeout(window.cartToastTimer);
   window.cartToastTimer=setTimeout(()=>{
     toast.classList.remove('show');
   },2500);
 }function openCart(){let c={};cart.forEach(id=>c[id]=(c[id]||0)+1);document.getElementById('cartList').innerHTML=Object.keys(c).length?Object.entries(c).map(([id,n])=>{let p=products.find(x=>x.id==id);return `<div class="row"><span>${n} × ${p.name}</span><b>${money(p.price*n)}</b></div>`}).join(''):'<p>No hay productos en el pedido.</p>';document.getElementById('cartModal').style.display='block'}function sendOrder(){if(!cart.length)return alert('Agregá al menos un producto.');let c={};cart.forEach(id=>c[id]=(c[id]||0)+1);let text='Hola Santino Aromas! Quiero hacer este pedido:%0A%0A'+Object.entries(c).map(([id,n])=>{let p=products.find(x=>x.id==id);return n+' x '+p.name+' - '+money(p.price*n)}).join('%0A');location.href='https://wa.me/5493415198195?text='+text}function hide(id){document.getElementById(id).style.display='none'}
-search.addEventListener('input',render);render();
+search.addEventListener('input',render);
+
+document.getElementById('sortProducts').addEventListener('change',function(){
+  sortMode=this.value;
+  render();
+});
+
+document.getElementById('brandFilter').addEventListener('change',function(){
+  brand=this.value;
+  render();
+});
+
+function actualizarMarcas(){
+  const select=document.getElementById('brandFilter');
+  const actual=select.value;
+
+  const marcas=[...new Set(
+    products
+      .map(p=>(p.brand||'').trim())
+      .filter(Boolean)
+  )].sort((a,b)=>a.localeCompare(b,'es'));
+
+  select.innerHTML='<option value="">🏷️ Todas las marcas</option>';
+
+  marcas.forEach(m=>{
+    const option=document.createElement('option');
+    option.value=m;
+    option.textContent=m;
+    select.appendChild(option);
+  });
+
+  if(marcas.includes(actual)) select.value=actual;
+}
+
+render();
+actualizarMarcas();
 </script>
 <script>
 const SUPABASE_URL = "https://qxrudlonkxhxxnnwdalo.supabase.co";
@@ -226,7 +453,7 @@ const SUPABASE_KEY = "sb_publishable_UbIYMOR680JtOk8fxNmQ-g_1g3wpadx";
 async function cargarCatalogoSupabase() {
   try {
     const respuesta = await fetch(
-      SUPABASE_URL + "/rest/v1/products?select=id,name,brand,price,presentation,image_path,description,active,stock&active=eq.true&order=created_at.desc",
+      SUPABASE_URL + "/rest/v1/products?select=id,name,brand,price,presentation,image_path,description,active,stock,created_at&active=eq.true&order=created_at.desc",
       {
         headers: {
           "apikey": SUPABASE_KEY,
@@ -253,9 +480,11 @@ async function cargarCatalogoSupabase() {
       duration: "",
       desc: p.description || "",
       image: p.image_path || "",
-      stock: Number(p.stock) || 0
+      stock: Number(p.stock) || 0,
+      created_at: p.created_at || ""
     }));
 
+    actualizarMarcas();
     render();
 
     console.log("Santino Aromas: catálogo cargado desde Supabase:", products.length);
