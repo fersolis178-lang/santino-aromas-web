@@ -148,6 +148,45 @@ fill:currentColor;
 .social-icon:hover{
 transform:scale(1.08);
 }
+.cart-icon svg{
+width:29px;
+height:29px;
+}
+
+.cart-icon-float{
+position:fixed;
+right:18px;
+bottom:20px;
+z-index:9999;
+width:66px;
+height:66px;
+border-radius:50%;
+background:linear-gradient(145deg,#f6d365,#c99b2e);
+border:3px solid #fff;
+box-shadow:0 6px 20px rgba(0,0,0,.38),0 0 0 4px rgba(201,155,46,.25);
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+transition:transform .2s ease,box-shadow .2s ease;
+}
+
+.cart-icon-float:hover{
+transform:scale(1.08);
+box-shadow:0 8px 24px rgba(0,0,0,.42),0 0 0 5px rgba(201,155,46,.30);
+}
+
+.cart-icon-float svg{
+width:36px;
+height:36px;
+fill:#222;
+}
+
+.cart-icon-float svg{
+width:34px;
+height:34px;
+}
+
 .cart-count{
 position:absolute;
 top:-3px;
@@ -231,6 +270,12 @@ justify-content:center;
 <span id="count" class="cart-count">0</span>
 </button>
 </div></div></header>
+<button onclick="openCart()" aria-label="Mi pedido" class="cart-icon-float">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M7 4h14l-2 9H8L6 2H2v2h2l2.4 11.1A2.4 2.4 0 0 0 8.7 17H19v-2H8.7a.4.4 0 0 1-.4-.3l-.2-.7H20L22 4H7Zm2 15a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Zm9 0a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z"/>
+  </svg>
+  <span id="countFloat" class="cart-count">0</span>
+</button>
 <nav><div class="wrap nav"><a href="#inicio">⌂ Inicio</a><a href="#catalogo">♧ Catálogo</a><a href="#categorias">▦ Categorías</a><a href="#contacto">☏ Contacto</a></div></nav>
 <main class="wrap" id="inicio"><div class="search"><input id="search" placeholder="🔎 Buscar perfumes, marcas, notas olfativas..."></div>
 
@@ -398,8 +443,23 @@ let sortMode='default';const grid=document.getElementById('grid'),search=documen
     return;
   }
 
+  let cantidadEnCarrito=cart.filter(x=>String(x)===String(id)).length;
+
+  if(cantidadEnCarrito >= Number(p.stock)){
+    let toast=document.getElementById('cartToast');
+    toast.textContent='⚠️ No hay más unidades disponibles';
+    toast.classList.add('show');
+    clearTimeout(window.cartToastTimer);
+    window.cartToastTimer=setTimeout(()=>{
+      toast.classList.remove('show');
+    },2500);
+    return;
+  }
+
   cart.push(String(id));
   document.getElementById('count').textContent=cart.length;
+  let countFloat=document.getElementById('countFloat');
+  if(countFloat) countFloat.textContent=cart.length;
 
   let toast=document.getElementById('cartToast');
   toast.textContent='🛒 ¡Agregado al pedido! '+p.name;
@@ -408,7 +468,47 @@ let sortMode='default';const grid=document.getElementById('grid'),search=documen
   window.cartToastTimer=setTimeout(()=>{
     toast.classList.remove('show');
   },2500);
-}function openCart(){let c={};cart.forEach(id=>c[id]=(c[id]||0)+1);document.getElementById('cartList').innerHTML=Object.keys(c).length?Object.entries(c).map(([id,n])=>{let p=products.find(x=>x.id==id);return `<div class="row"><span>${n} × ${p.name}</span><b>${money(p.price*n)}</b></div>`}).join(''):'<p>No hay productos en el pedido.</p>';document.getElementById('cartModal').style.display='block'}function sendOrder(){if(!cart.length)return alert('Agregá al menos un producto.');let c={};cart.forEach(id=>c[id]=(c[id]||0)+1);let text='Hola Santino Aromas! Quiero hacer este pedido:%0A%0A'+Object.entries(c).map(([id,n])=>{let p=products.find(x=>x.id==id);return n+' x '+p.name+' - '+money(p.price*n)}).join('%0A');location.href='https://wa.me/5493415198195?text='+text}function hide(id){document.getElementById(id).style.display='none'}
+}function openCart(){
+  let c={};
+  cart.forEach(id=>c[id]=(c[id]||0)+1);
+
+  document.getElementById('cartList').innerHTML=Object.keys(c).length
+    ? Object.entries(c).map(([id,n])=>{
+        let p=products.find(x=>x.id==id);
+        return `<div class="row" style="display:flex;align-items:center;justify-content:space-between;gap:10px">
+          <span>${n} × ${p.name}</span>
+          <div style="display:flex;align-items:center;gap:6px">
+            <button class="btn" onclick="removeOne('${id}')" style="padding:5px 10px">−</button>
+            <b>${money(p.price*n)}</b>
+            <button class="btn" onclick="add('${id}');openCart()" style="padding:5px 10px">+</button>
+            <button class="btn" onclick="removeProduct('${id}')" style="padding:5px 10px">🗑️</button>
+          </div>
+        </div>`;
+      }).join('')
+    : '<p>No hay productos en el pedido.</p>';
+
+  document.getElementById('cartModal').style.display='block';
+}
+
+function removeOne(id){
+  let i=cart.indexOf(String(id));
+  if(i!==-1) cart.splice(i,1);
+
+  document.getElementById('count').textContent=cart.length;
+  let countFloat=document.getElementById('countFloat');
+  if(countFloat) countFloat.textContent=cart.length;
+  openCart();
+}
+
+function removeProduct(id){
+  cart=cart.filter(x=>String(x)!==String(id));
+
+  document.getElementById('count').textContent=cart.length;
+  let countFloat=document.getElementById('countFloat');
+  if(countFloat) countFloat.textContent=cart.length;
+  openCart();
+}
+function sendOrder(){if(!cart.length)return alert('Agregá al menos un producto.');let c={};cart.forEach(id=>c[id]=(c[id]||0)+1);let text='Hola Santino Aromas! Quiero hacer este pedido:%0A%0A'+Object.entries(c).map(([id,n])=>{let p=products.find(x=>x.id==id);return n+' x '+p.name+' - '+money(p.price*n)}).join('%0A');location.href='https://wa.me/5493415198195?text='+text}function hide(id){document.getElementById(id).style.display='none'}
 search.addEventListener('input',render);
 
 document.getElementById('sortProducts').addEventListener('change',function(){
