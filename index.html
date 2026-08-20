@@ -436,10 +436,58 @@ let sortMode='default';const grid=document.getElementById('grid'),search=documen
             onclick="add('${p.id}');hide('modal')">
       AGREGAR AL PEDIDO
     </button>
+
+<button class="btn detail"
+            style="margin-top:10px"
+            onclick="compartirProducto('${p.id}')">
+      📤 COMPARTIR PRODUCTO
+    </button>
   `;
 
   document.getElementById('modal').style.display='block';
-}function add(id){
+}
+
+async function compartirProducto(id){
+  const p=products.find(x=>String(x.id)===String(id));
+
+  if(!p){
+    alert("No se pudo encontrar el producto.");
+    return;
+  }
+
+  const url=window.location.origin+window.location.pathname+"?producto="+encodeURIComponent(p.id);
+
+  const texto=
+    "🌸 Santino Aromas\n"+
+    "🧴 "+(p.name||"Producto")+"\n"+
+    (p.brand?"🏷️ "+p.brand+"\n":"")+
+    "💰 "+money(p.price||0)+"\n"+
+    (p.ml?"📦 "+p.ml+"\n":"")+
+    "\nMirá este producto 👇\n"+url;
+
+  if(navigator.share){
+    try{
+      await navigator.share({
+        title:"Santino Aromas - "+(p.name||"Producto"),
+        text:texto,
+        url:url
+      });
+    }catch(e){
+      if(e.name!=="AbortError"){
+        console.warn("No se pudo compartir:",e);
+      }
+    }
+  }else{
+    try{
+      await navigator.clipboard.writeText(texto);
+      alert("✅ Enlace del producto copiado. Ya podés pegarlo donde quieras.");
+    }catch(e){
+      prompt("Copiá este enlace:",url);
+    }
+  }
+}
+
+function add(id){
   let p=products.find(x=>String(x.id)===String(id));
 
   if(!p || Number(p.stock)<=0){
