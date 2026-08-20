@@ -455,7 +455,7 @@ async function compartirProducto(id){
     return;
   }
 
-  const url=window.location.origin+window.location.pathname+"?producto="+encodeURIComponent(p.id);
+  const url="https://fersolis178-lang.github.io/santino-aromas-web/?producto="+encodeURIComponent(p.id);
 
   const texto=
     "🌸 Santino Aromas\n"+
@@ -463,26 +463,74 @@ async function compartirProducto(id){
     (p.brand?"🏷️ "+p.brand+"\n":"")+
     "💰 "+money(p.price||0)+"\n"+
     (p.ml?"📦 "+p.ml+"\n":"")+
-    "\nMirá este producto 👇\n"+url;
+    "\nMirá este producto 👇\n"+
+    url;
 
-  if(navigator.share){
-    try{
+  try{
+
+    if(p.image && navigator.share){
+
+      try{
+        const respuesta=await fetch(p.image);
+
+        if(respuesta.ok){
+
+          const blob=await respuesta.blob();
+
+          const extension =
+            blob.type==="image/png" ? "png" :
+            blob.type==="image/webp" ? "webp" :
+            "jpg";
+
+          const archivo=new File(
+            [blob],
+            (p.name||"producto").replace(/[^a-z0-9]/gi,"_")+"."+extension,
+            {type:blob.type || "image/jpeg"}
+          );
+
+          const datos={
+            title:"Santino Aromas - "+(p.name||"Producto"),
+            text:texto,
+            files:[archivo]
+          };
+
+          if(!navigator.canShare || navigator.canShare(datos)){
+            await navigator.share(datos);
+            return;
+          }
+        }
+      }catch(error){
+        console.warn("No se pudo compartir la imagen:",error);
+      }
+    }
+
+    if(navigator.share){
       await navigator.share({
         title:"Santino Aromas - "+(p.name||"Producto"),
         text:texto,
         url:url
       });
-    }catch(e){
-      if(e.name!=="AbortError"){
-        console.warn("No se pudo compartir:",e);
-      }
+      return;
     }
-  }else{
+
     try{
       await navigator.clipboard.writeText(texto);
-      alert("✅ Enlace del producto copiado. Ya podés pegarlo donde quieras.");
+      alert("✅ Datos y enlace del producto copiados.");
     }catch(e){
       prompt("Copiá este enlace:",url);
+    }
+
+  }catch(e){
+
+    if(e.name!=="AbortError"){
+      console.warn("No se pudo compartir:",e);
+
+      try{
+        await navigator.clipboard.writeText(texto);
+        alert("✅ Datos y enlace del producto copiados.");
+      }catch(error){
+        prompt("Copiá este enlace:",url);
+      }
     }
   }
 }
@@ -644,6 +692,23 @@ async function cargarCatalogoSupabase() {
 
     actualizarMarcas();
     render();
+
+    // Abrir automáticamente un producto recibido por enlace compartido
+    const productoCompartido = new URLSearchParams(window.location.search).get("producto");
+
+    if(productoCompartido){
+      const productoEncontrado = products.find(
+        x => String(x.id) === String(productoCompartido)
+      );
+
+      if(productoEncontrado){
+        setTimeout(()=>{
+          show(productoEncontrado.id);
+        },300);
+      }else{
+        console.warn("Producto compartido no encontrado:", productoCompartido);
+      }
+    }
 
     console.log("Santino Aromas: catálogo cargado desde Supabase:", products.length);
   } catch (error) {
