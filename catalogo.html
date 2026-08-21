@@ -467,6 +467,10 @@ function actualizarMarcas(){
   if(marcas.includes(actual)) select.value=actual;
 }
 
+search.addEventListener("input", function(){
+  render();
+});
+
 render();
 actualizarMarcas();
 function hide(id){
