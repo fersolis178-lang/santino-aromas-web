@@ -293,6 +293,14 @@ justify-content:center;
 <div class="title"><h2>CATÁLOGO</h2></div>
 
 <div style="display:flex;flex-wrap:wrap;gap:10px;margin:0 0 20px 0;">
+  <select id="categoryFilter" style="flex:1;min-width:0;width:50%;padding:8px 10px;border-radius:10px;border:1px solid #8f7438;font-size:13px;">
+    <option value="">✨ TODAS</option>
+    <option value="perfumes">🌸 PERFUMES</option>
+    <option value="skala">🧴 PRODUCTOS SKALA</option>
+    <option value="ofertas">🔥 OFERTAS</option>
+    <option value="belleza">💄 BELLEZA PERSONAL</option>
+  </select>
+
   <select id="sortProducts" style="flex:1;min-width:0;width:50%;padding:8px 10px;border-radius:10px;border:1px solid #8f7438;font-size:13px;">
     <option value="default">↕ ORDENAR</option>
     <option value="all">Todos</option>
@@ -313,13 +321,22 @@ justify-content:center;
 <div id="adminProducts" class="adminProducts"></div></div></div>
 <script>
 const defaults=[{id:1,name:'Asad',brand:'Lattafa',ml:'100 ml',price:49900,family:'Amaderada / especiada',notes:'Especias · maderas · ámbar · vainilla',gender:'Masculino / unisex',duration:'Alta',desc:'Fragancia intensa y especiada, de carácter elegante y envolvente.',image:''},{id:2,name:'Khamrah',brand:'Lattafa',ml:'100 ml',price:52900,family:'Ámbar / gourmand',notes:'Canela · dátiles · praliné · vainilla · ámbar',gender:'Unisex',duration:'Alta',desc:'Dulce, cálido y gourmand.',image:''},{id:3,name:'Yara',brand:'Lattafa',ml:'100 ml',price:45900,family:'Floral / gourmand',notes:'Frutas · flores · vainilla · almizcle',gender:'Femenino',duration:'Media-alta',desc:'Dulce, cremoso y femenino.',image:''},{id:4,name:'Afeef',brand:'Lattafa',ml:'100 ml',price:48900,family:'Floral / frutal',notes:'Frutas · flores · vainilla · maderas',gender:'Unisex',duration:'Alta',desc:'Una fragancia sofisticada y envolvente.',image:''}];
-let products=JSON.parse(localStorage.getItem('santinoProducts')||'null')||defaults,cart=[],brand='',editing=null;
+let products=JSON.parse(localStorage.getItem('santinoProducts')||'null')||defaults,cart=[],brand='',category='',editing=null;
 let sortMode='default';const grid=document.getElementById('grid'),search=document.getElementById('search');const money=n=>new Intl.NumberFormat('es-AR',{style:'currency',currency:'ARS',maximumFractionDigits:0}).format(n);function persist(){localStorage.setItem('santinoProducts',JSON.stringify(products))}function render(){
   let q=search.value.toLowerCase();
 
   let a=products.filter(p=>
     (p.name+' '+p.brand+' '+(p.notes||'')+' '+(p.desc||'')).toLowerCase().includes(q) &&
-    (!brand||p.brand===brand)
+    (!brand||p.brand===brand) &&
+    (!category ||
+      (category==='skala' && String(p.brand||'').trim().toLowerCase()==='skala') ||
+      (category==='ofertas' && String(p.brand||'').trim().toLowerCase()==='oferta') ||
+      (category==='belleza' && String(p.brand||'').trim().toLowerCase()==='belleza personal') ||
+      (category==='perfumes' &&
+        String(p.brand||'').trim().toLowerCase()!=='skala' &&
+        String(p.brand||'').trim().toLowerCase()!=='oferta' &&
+        String(p.brand||'').trim().toLowerCase()!=='belleza personal')
+    )
   );
 
   if(sortMode==='priceAsc') a.sort((x,y)=>Number(x.price)-Number(y.price));
@@ -327,7 +344,13 @@ let sortMode='default';const grid=document.getElementById('grid'),search=documen
   if(sortMode==='newest') a.sort((x,y)=>new Date(y.created_at||0)-new Date(x.created_at||0));
   if(sortMode==='oldest') a.sort((x,y)=>new Date(x.created_at||0)-new Date(y.created_at||0));
 
-  grid.innerHTML=a.map(p=>`<article class="card"><div class="pic">${p.image?`<img src="${p.image}" loading="lazy">`:'<div class="placeholder">🧴<br>Sin foto</div>'}</div><div class="body"><div class="brand">${p.brand}</div><div class="name">${p.name}</div><div class="ml">${p.ml}</div><div class="price">${money(p.price)}</div><button class="btn detail" onclick="show('${p.id}')">VER DETALLES →</button></div></article>`).join('')||'<p>No encontramos productos.</p>'}function setBrand(b){brand=b;render();document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})}function clearFilter(){brand='';search.value='';render()}async function show(id){
+  grid.innerHTML=a.map(p=>`<article class="card"><div class="pic">${p.image?`<img src="${p.image}" loading="lazy">`:'<div class="placeholder">🧴<br>Sin foto</div>'}</div><div class="body"><div class="brand">${p.brand}</div><div class="name">${p.name}</div><div class="ml">${p.ml}</div><div class="price">${money(p.price)}</div><button class="btn detail" onclick="show('${p.id}')">VER DETALLES →</button></div></article>`).join('')||'<p>No encontramos productos.</p>'}document.getElementById('categoryFilter').addEventListener('change',function(){
+  category=this.value;
+  brand='';
+  document.getElementById('brandFilter').value='';
+  render();
+});
+function setBrand(b){brand=b;render();document.getElementById('catalogo').scrollIntoView({behavior:'smooth'})}function clearFilter(){brand='';search.value='';render()}async function show(id){
   let p=products.find(x=>String(x.id)===String(id));
   if(!p){
     console.error("Producto no encontrado:",id);
